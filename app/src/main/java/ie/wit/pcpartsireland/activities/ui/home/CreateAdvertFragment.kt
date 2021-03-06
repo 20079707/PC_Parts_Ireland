@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import ie.wit.pcpartsireland.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -12,13 +13,14 @@ import ie.wit.pcpartsireland.R
 
 
 class CreateAdvertFragment : Fragment() {
-
+    val types = arrayOf("Java", "Python", "C++", "C#", "Angular", "Go")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        
         return inflater.inflate(R.layout.fragment_create_advert, container, false)
     }
 

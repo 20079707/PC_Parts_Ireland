@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/android-studio-beta-4.2/plugins/android/lib/android.jar!/images/material/icons/materialicons/add_box/baseline_add_box_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/android-studio-beta-4.2/plugins/android/lib/android.jar!/images/material/icons/materialicons/shopping_cart/baseline_shopping_cart_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="nav_place_advert_icon" />
+                            <entry key="outputName" value="nav_shopping_cart_icon" />
                             <entry key="sourceFile" value="C:\Users\John\Documents\GitHub\Mobile App 2\PC_Parts_Ireland" />
                           </map>
                         </option>

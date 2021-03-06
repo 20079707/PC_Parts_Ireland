@@ -17,4 +17,24 @@
     <string name="nav_search">Search</string>
     <string name="nav_place_advert">Place Ad</string>
     <string name="menu_search">Search Parts</string>
+    <string name="card_price">Price</string>
+    <string name="card_name">Name</string>
+    <string name="card_category">Category</string>
+    <string name="ad_title">Title</string>
+    <string name="ad_price">Price</string>
+    <string name="ad_description">Description</string>
+    <string name="button_createAdvert">PLACE AD</string>
+
+    <string-array name="categories">
+        <item>Bangkok</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>Singapore</item>
+        <item>New York</item>
+        <item>Istanbul</item>
+        <item>Dubai</item>
+        <item>Kuala Lumpur</item>
+        <item>Hong Kong</item>
+        <item>Barcelona</item>
+    </string-array>
 </resources>

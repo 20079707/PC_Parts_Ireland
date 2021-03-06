@@ -32,13 +32,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="nav_s">
+                  <entry key="nav_search">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="145" />
+                            <option name="y" value="328" />
                           </Point>
                         </option>
                       </LayoutPositions>
