@@ -20,21 +20,38 @@
     <string name="card_price">Price</string>
     <string name="card_name">Name</string>
     <string name="card_category">Category</string>
-    <string name="ad_title">Title</string>
+    <string name="ad_component">Part Name</string>
+    <string name="ad_model">Part Name</string>
+    <string name="ad_brand">Make &amp; Model</string>
     <string name="ad_price">Price</string>
-    <string name="ad_description">Description</string>
-    <string name="button_createAdvert">PLACE AD</string>
+    <string name="ad_description">Describe the PC part your are selling</string>
+    <string name="button_createAdvert">SELL NOW</string>
+    <string name="button_addImage">ADD IMAGE</string>
+    <string name="add_images">Upload an Image</string>
+    <string name="for_sale">For Sale</string>
+    <string name="wanted">Wanted</string>
+    <string name="ad_type">Advert Type</string>
+    <string name="ad_category">Category</string>
+    <string name="ad_title">Advert Title</string>
+    <string name="ad_quantity">Quantity</string>
+    <string name="description">Description</string>
 
     <string-array name="categories">
-        <item>Bangkok</item>
-        <item>London</item>
-        <item>Paris</item>
-        <item>Singapore</item>
-        <item>New York</item>
-        <item>Istanbul</item>
-        <item>Dubai</item>
-        <item>Kuala Lumpur</item>
-        <item>Hong Kong</item>
-        <item>Barcelona</item>
+        <item>CPU</item>
+        <item>GPU</item>
+        <item>RAM</item>
+        <item>Motherboard</item>
+        <item>SSD</item>
+        <item>Hard Drives</item>
+        <item>Power Supply</item>
+        <item>Case</item>
+        <item>CPU Fan</item>
+        <item>Case Fan</item>
+        <item>Cables</item>
+        <item>Monitor</item>
+        <item>Keyboard</item>
+        <item>Mouse</item>
+        <item>Speaker</item>
+        <item>Extras</item>
     </string-array>
 </resources>
