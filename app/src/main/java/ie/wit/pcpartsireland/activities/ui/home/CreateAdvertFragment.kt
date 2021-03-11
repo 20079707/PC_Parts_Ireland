@@ -80,6 +80,7 @@ class CreateAdvertFragment : Fragment(), AnkoLogger {
                 } else {
                     app.Store.create(part.copy())
                 }
+
             }
         }
     }
