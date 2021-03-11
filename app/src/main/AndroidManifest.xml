@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PCPartsIreland">
         <activity
+            android:name=".activities.CreateAdvertActivity"
+            android:label="@string/title_activity_create_advert"
+            android:theme="@style/Theme.PCPartsIreland.NoActionBar">
+        </activity>
+        <activity
             android:name=".activities.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.PCPartsIreland.NoActionBar">

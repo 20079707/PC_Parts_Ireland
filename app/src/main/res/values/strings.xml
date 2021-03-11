@@ -61,4 +61,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="prompt_enterTitle">Please Enter the Advert Title</string>
+    <string name="title_activity_create_advert">Create Advert</string>
+    <string name="nav_cart">Cart</string>
 </resources>

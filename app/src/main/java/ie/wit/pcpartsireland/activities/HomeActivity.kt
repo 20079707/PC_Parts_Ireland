@@ -12,7 +12,9 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
+import ie.wit.pcpartsireland.main.MainApp
 import kotlinx.android.synthetic.main.activity_home.*
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 
 
@@ -20,18 +22,20 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        app = application as MainApp
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.fab.setOnClickListener {
+            startActivityForResult<CreateAdvertActivity>(0)
         }
 
 

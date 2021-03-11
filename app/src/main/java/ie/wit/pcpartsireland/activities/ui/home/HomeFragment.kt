@@ -3,13 +3,10 @@ package ie.wit.pcpartsireland.activities.ui.home
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.pcpartsireland.R
-import ie.wit.pcpartsireland.activities.ui.home.SearchFragment.Companion.newInstance
 import ie.wit.pcpartsireland.adapters.Adapter
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model

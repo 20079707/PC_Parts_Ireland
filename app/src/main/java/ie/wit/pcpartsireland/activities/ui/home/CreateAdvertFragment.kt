@@ -61,8 +61,6 @@ class CreateAdvertFragment : Fragment(), AnkoLogger {
             setButtonListener(root)
             return root
         }
-
-
     }
 
 
