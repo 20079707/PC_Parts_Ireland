@@ -1,5 +1,6 @@
 package ie.wit.pcpartsireland.activities.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,26 +8,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import ie.wit.pcpartsireland.R
-import it.sephiroth.android.library.numberpicker.doOnProgressChanged
-import it.sephiroth.android.library.numberpicker.doOnStartTrackingTouch
-import it.sephiroth.android.library.numberpicker.doOnStopTrackingTouch
+import ie.wit.pcpartsireland.helpers.readImage
+import ie.wit.pcpartsireland.helpers.showImagePicker
+import ie.wit.pcpartsireland.main.MainApp
+import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.fragment_create_advert.*
 import kotlinx.android.synthetic.main.fragment_create_advert.view.*
-import kotlinx.android.synthetic.main.list_cards.*
+import org.jetbrains.anko.AnkoLogger
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+class CreateAdvertFragment : Fragment(), AnkoLogger {
 
+    lateinit var app: MainApp
+    private var part = Model()
+    private val imageRequest = 1
+    var edit = false
 
-class CreateAdvertFragment : Fragment() {
-    val types = arrayOf("Java", "Python", "C++", "C#", "Angular", "Go")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        app = activity?.application as MainApp
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-
 
 
         val root = inflater.inflate(R.layout.fragment_create_advert, container, false)
@@ -46,12 +49,7 @@ class CreateAdvertFragment : Fragment() {
             spinner.onItemSelectedListener = object :
 
                 AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View,
-                    position: Int,
-                    id: Long
-                ) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
 
                 }
 
@@ -59,15 +57,37 @@ class CreateAdvertFragment : Fragment() {
 
                 }
             }
+            setImageButtonListener(root)
+            setButtonListener(root)
             return root
         }
+
+
     }
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreateAdvertFragment().apply {
-                arguments = Bundle().apply {
+
+
+
+    private fun setButtonListener(layout: View) {
+        layout.createAdvertBtn.setOnClickListener {
+            part.title = layout.advertTitle.text.toString()
+            part.price = layout.advertPrice.text.toString().toInt()
+
+            if (part.title.isEmpty()) {
+                Toast.makeText(context, "Please Enter the Advert Title", Toast.LENGTH_SHORT).show()
+            } else {
+                if (edit) {
+                    app.Store.update(part.copy())
+                } else {
+                    app.Store.create(part.copy())
                 }
             }
+        }
+    }
+
+    private fun setImageButtonListener(layout: View) {
+        layout.imageBtn.setOnClickListener {
+            showImagePicker(this, imageRequest)
+        }
     }
 }
+

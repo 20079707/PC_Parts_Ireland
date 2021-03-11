@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.sephiroth74:android-target-tooltip:v2.0.4@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/053d1e177822e396bcece50c199453a5/android-target-tooltip-v2.0.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/053d1e177822e396bcece50c199453a5/android-target-tooltip-v2.0.4/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/053d1e177822e396bcece50c199453a5/android-target-tooltip-v2.0.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f4a0ec808438523b6061724d04409b19/android-target-tooltip-v2.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f4a0ec808438523b6061724d04409b19/android-target-tooltip-v2.0.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f4a0ec808438523b6061724d04409b19/android-target-tooltip-v2.0.4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

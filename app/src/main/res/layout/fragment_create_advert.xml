@@ -44,7 +44,7 @@
                 tools:ignore="ButtonStyle" />
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/partImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -196,8 +196,8 @@
                         android:id="@+id/advertPrice"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/ad_price"
-                        android:inputType="text"
+                        android:text="@string/one_euro"
+                        android:inputType="numberDecimal"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:textColor="@color/white"
@@ -220,9 +220,9 @@
                         android:id="@+id/advertQuantity"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="1"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLength="25"
+                        android:text="1"
                         android:maxLines="1"
                         android:textColor="@color/white"
                         android:textSize="14sp"
@@ -265,7 +265,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/createAdvert"
+        android:id="@+id/createAdvertBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@color/light_blue"

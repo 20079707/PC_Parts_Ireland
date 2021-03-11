@@ -2,5 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/nav_search_icon"
+        android:title="@string/nav_search"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/nav_home_icon"
+        android:title="@string/nav_home"
+        app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/nav_create_advert"
+        android:icon="@drawable/nav_place_advert_icon"
+        android:title="@string/nav_place_advert"
+        app:showAsAction="never"/>
 </menu>

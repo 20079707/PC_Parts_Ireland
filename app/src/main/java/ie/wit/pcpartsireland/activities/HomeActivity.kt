@@ -3,9 +3,7 @@ package ie.wit.pcpartsireland.activities
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -17,8 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
-import kotlinx.android.synthetic.main.app_bar_home.*
-import kotlinx.android.synthetic.main.fragment_create_advert.*
+import org.jetbrains.anko.toast
 
 
 class HomeActivity : AppCompatActivity() {
@@ -52,7 +49,11 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -61,8 +62,14 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.nav_home -> toast("You Selected Donate")
+            R.id.nav_search -> toast("You Selected Report")
+            R.id.nav_create_advert -> toast("You Selected Report")
+        }
+        return super.onOptionsItemSelected(item)
     }
+
 }

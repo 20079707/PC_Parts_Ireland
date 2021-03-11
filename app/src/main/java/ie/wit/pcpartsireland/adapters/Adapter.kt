@@ -5,10 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.pcpartsireland.R
+import ie.wit.pcpartsireland.activities.ui.home.HomeFragment
 import ie.wit.pcpartsireland.models.Model
+import kotlinx.android.synthetic.main.fragment_create_advert.view.*
 import kotlinx.android.synthetic.main.list_cards.view.*
 
-class Adapter constructor(private var adverts: List<Model>)
+
+
+class Adapter(
+    private var adverts: List<Model>, homeFragment: HomeFragment
+)
     : RecyclerView.Adapter<Adapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -30,9 +36,10 @@ class Adapter constructor(private var adverts: List<Model>)
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(donation: Model) {
-            itemView.name.text = donation.name
-            itemView.price.text = donation.price.toString()
+        fun bind(part: Model) {
+            itemView.title.text = part.title
+            itemView.price.text = part.price.toString()
+            itemView.category.text = part.category
             itemView.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
         }
     }
