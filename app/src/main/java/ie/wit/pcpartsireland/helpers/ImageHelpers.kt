@@ -27,11 +27,9 @@ fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
     if (resultCode == Activity.RESULT_OK && data != null && data.data != null) {
         try {
             //bitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver, data.data)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                bitmap = ImageDecoder.decodeBitmap(
-                    ImageDecoder.createSource(activity.contentResolver, data.data!!
-                    ))
-            }
+            bitmap = ImageDecoder.decodeBitmap(
+                ImageDecoder.createSource(activity.contentResolver, data.data!!
+                ))
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -39,8 +37,8 @@ fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
     return bitmap
 }
 
-fun readImageFromPath(context: Context, path: String): Bitmap? {
-    var bitmap: Bitmap? = null
+fun readImageFromPath(context: Context, path : String) : Bitmap? {
+    var bitmap : Bitmap? = null
     val uri = Uri.parse(path)
     if (uri != null) {
         try {

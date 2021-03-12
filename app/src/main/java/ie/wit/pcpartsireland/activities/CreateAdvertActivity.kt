@@ -76,6 +76,7 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
 
         createAdvertBtn.setOnClickListener {
             val category = part.category
+            val image = part.image
             val title = advertTitle.text.toString()
             val price = advertPrice.text.toString().toInt()
             val adtype = if(radioButtons.checkedRadioButtonId == R.id.radio_for_sale) "For Sale" else "Wanted"
@@ -85,7 +86,7 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
                 if (edit) {
                     app.Store.update(part.copy())
                 } else {
-                    app.Store.create(Model(title = title, price = price, adtype = adtype, category = category))
+                    app.Store.create(Model(title = title, price = price, adtype = adtype, category = category, image = image))
                 }
             }
             info("add Button Pressed: $part")

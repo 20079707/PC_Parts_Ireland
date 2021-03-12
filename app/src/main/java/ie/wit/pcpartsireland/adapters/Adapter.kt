@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.pcpartsireland.R
+import ie.wit.pcpartsireland.helpers.readImage
+import ie.wit.pcpartsireland.helpers.readImageFromPath
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.list_cards.view.*
 
@@ -40,6 +42,7 @@ class Adapter(
             itemView.price.text = part.price.toString()
             itemView.category.text = part.category
             itemView.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, part.image))
             itemView.setOnClickListener { listener.onPartClick(part) }
         }
     }

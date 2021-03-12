@@ -1,10 +1,12 @@
 package ie.wit.pcpartsireland.activities.ui.home
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.adapters.Adapter
