@@ -1,6 +1,5 @@
 package ie.wit.pcpartsireland.activities.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import ie.wit.pcpartsireland.R
-import ie.wit.pcpartsireland.helpers.readImage
 import ie.wit.pcpartsireland.helpers.showImagePicker
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
-import kotlinx.android.synthetic.main.fragment_create_advert.*
 import kotlinx.android.synthetic.main.fragment_create_advert.view.*
 import org.jetbrains.anko.AnkoLogger
 
@@ -57,7 +54,6 @@ class CreateAdvertFragment : Fragment(), AnkoLogger {
 
                 }
             }
-            setImageButtonListener(root)
             setButtonListener(root)
             return root
         }
@@ -80,12 +76,6 @@ class CreateAdvertFragment : Fragment(), AnkoLogger {
                 }
 
             }
-        }
-    }
-
-    private fun setImageButtonListener(layout: View) {
-        layout.imageBtn.setOnClickListener {
-            showImagePicker(this, imageRequest)
         }
     }
 }

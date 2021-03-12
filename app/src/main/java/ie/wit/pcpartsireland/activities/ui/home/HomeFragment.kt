@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.adapters.Adapter
+import ie.wit.pcpartsireland.adapters.PartListener
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
-class HomeFragment : Fragment(){
+class HomeFragment : Fragment(), PartListener {
 
     lateinit var app: MainApp
     var part = Model()
@@ -24,12 +25,17 @@ class HomeFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         root.recyclerView.layoutManager = LinearLayoutManager(activity)
         root.recyclerView.adapter = Adapter(app.Store.findAll(), this)
 
+
         return root
+    }
+
+    override fun onPartClick(part: Model) {
+        TODO("Not yet implemented")
     }
 
 

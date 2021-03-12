@@ -1,5 +1,6 @@
 package ie.wit.pcpartsireland.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -9,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.databinding.ActivityCreateAdvertBinding
+import ie.wit.pcpartsireland.helpers.readImage
+import ie.wit.pcpartsireland.helpers.showImagePicker
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.activity_create_advert.*
@@ -18,11 +21,13 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
 
     private lateinit var binding: ActivityCreateAdvertBinding
     private lateinit var app: MainApp
     private var part = Model()
+    private val imageRequest = 1
     var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,29 +64,49 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
             }
         }
 
-        if (intent.hasExtra("tractor_edit")) {
+        if (intent.hasExtra("part_edit")) {
             edit = true
             part = intent.extras?.getParcelable("tractor_edit")!!
             advertTitle.setText(part.title)
             advertPrice.setText(part.price)
+
+
         }
 
 
         createAdvertBtn.setOnClickListener {
-            part.title = advertTitle.text.toString()
-            part.price = advertPrice.text.toString().toInt()
+            val category = part.category
+            val title = advertTitle.text.toString()
+            val price = advertPrice.text.toString().toInt()
+            val adtype = if(radioButtons.checkedRadioButtonId == R.id.radio_for_sale) "For Sale" else "Wanted"
             if (part.title.isEmpty()) {
                 toast(R.string.prompt_enterTitle)
             } else {
                 if (edit) {
                     app.Store.update(part.copy())
                 } else {
-                    app.Store.create(part.copy())
+                    app.Store.create(Model(title = title, price = price, adtype = adtype, category = category))
                 }
             }
             info("add Button Pressed: $part")
             setResult(RESULT_OK)
             finish()
+        }
+
+        imageBtn.setOnClickListener {
+            showImagePicker(this, imageRequest)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, requestCode, data)
+        when(requestCode) {
+            imageRequest -> {
+                if (data != null) {
+                    part.image = data.data.toString()
+                    partImage.setImageBitmap(readImage(this, resultCode, data))
+                }
+            }
         }
     }
 
