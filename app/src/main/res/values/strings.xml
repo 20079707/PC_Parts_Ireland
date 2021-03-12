@@ -36,7 +36,7 @@
     <string name="ad_title">Advert Title</string>
     <string name="ad_quantity">Quantity</string>
     <string name="description">Description</string>
-    <string name="one_euro">1.00</string>
+    <string name="one_euro">1</string>
     <string name="image_picker">Select Image</string>
 
     <string-array name="categories">
@@ -64,4 +64,6 @@
     <string name="prompt_enterTitle">Please Enter the Advert Title</string>
     <string name="title_activity_create_advert">Create Advert</string>
     <string name="nav_cart">Cart</string>
+    <string name="saveBtn">Save</string>
+    <string name="changeImageBtn">Change Image</string>
 </resources>

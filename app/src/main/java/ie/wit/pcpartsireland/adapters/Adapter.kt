@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.pcpartsireland.R
+import ie.wit.pcpartsireland.activities.CreateAdvertActivity
+import ie.wit.pcpartsireland.activities.ui.home.HomeFragment
 import ie.wit.pcpartsireland.helpers.readImage
 import ie.wit.pcpartsireland.helpers.readImageFromPath
 import ie.wit.pcpartsireland.models.Model
@@ -15,7 +17,8 @@ interface PartListener {
 }
 
 class Adapter(
-    private var adverts: List<Model>, private val listener: PartListener
+    private var adverts: List<Model>,
+    private val listener: PartListener
 ) : RecyclerView.Adapter<Adapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {

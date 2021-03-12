@@ -1,19 +1,20 @@
 package ie.wit.pcpartsireland.activities.ui.home
 
-import android.graphics.drawable.Drawable
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.pcpartsireland.R
+import ie.wit.pcpartsireland.activities.CreateAdvertActivity
 import ie.wit.pcpartsireland.adapters.Adapter
 import ie.wit.pcpartsireland.adapters.PartListener
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.fragment_home.view.*
+
 
 class HomeFragment : Fragment(), PartListener {
 
@@ -32,13 +33,13 @@ class HomeFragment : Fragment(), PartListener {
         root.recyclerView.layoutManager = LinearLayoutManager(activity)
         root.recyclerView.adapter = Adapter(app.Store.findAll(), this)
 
-
         return root
     }
 
     override fun onPartClick(part: Model) {
-        TODO("Not yet implemented")
+
+        val intent = Intent(activity, CreateAdvertActivity::class.java).putExtra("part_edit", part)
+        startActivityForResult(intent, 0)
+
     }
-
-
 }

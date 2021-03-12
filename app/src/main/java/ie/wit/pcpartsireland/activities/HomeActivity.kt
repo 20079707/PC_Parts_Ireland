@@ -45,8 +45,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
+        appBarConfiguration = AppBarConfiguration(setOf(
                 R.id.nav_home, R.id.nav_create_advert, R.id.nav_search
             ), drawerLayout
         )

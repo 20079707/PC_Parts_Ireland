@@ -11,15 +11,26 @@ import androidx.appcompat.app.AppCompatActivity
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.databinding.ActivityCreateAdvertBinding
 import ie.wit.pcpartsireland.helpers.readImage
+import ie.wit.pcpartsireland.helpers.readImageFromPath
 import ie.wit.pcpartsireland.helpers.showImagePicker
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.activity_create_advert.*
+import kotlinx.android.synthetic.main.activity_create_advert.advertDescription
+import kotlinx.android.synthetic.main.activity_create_advert.advertPrice
+import kotlinx.android.synthetic.main.activity_create_advert.advertTitle
+import kotlinx.android.synthetic.main.activity_create_advert.createAdvertBtn
+import kotlinx.android.synthetic.main.activity_create_advert.imageBtn
+import kotlinx.android.synthetic.main.activity_create_advert.mySpinner
+import kotlinx.android.synthetic.main.activity_create_advert.partImage
+import kotlinx.android.synthetic.main.activity_create_advert.radioButtons
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.fragment_create_advert.*
 import kotlinx.android.synthetic.main.fragment_create_advert.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.activity_create_advert.advertQuantity as advertQuantity1
 
 @Suppress("CAST_NEVER_SUCCEEDS")
 class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
@@ -33,6 +44,7 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = application as MainApp
+
 
 
         binding = ActivityCreateAdvertBinding.inflate(layoutInflater)
@@ -66,27 +78,29 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
 
         if (intent.hasExtra("part_edit")) {
             edit = true
-            part = intent.extras?.getParcelable("tractor_edit")!!
+            part = intent.extras?.getParcelable("part_edit")!!
             advertTitle.setText(part.title)
-            advertPrice.setText(part.price)
-
-
+            advertDescription.setText(part.description)
+            createAdvertBtn.setText(R.string.saveBtn)
+            imageBtn.setText(R.string.changeImageBtn)
+            partImage.setImageBitmap(readImageFromPath(this, part.image))
         }
 
-
         createAdvertBtn.setOnClickListener {
-            val category = part.category
-            val image = part.image
-            val title = advertTitle.text.toString()
-            val price = advertPrice.text.toString().toInt()
-            val adtype = if(radioButtons.checkedRadioButtonId == R.id.radio_for_sale) "For Sale" else "Wanted"
+            part.category = part.category
+            part.image = part.image
+            part.title = advertTitle.text.toString()
+            part.price = advertPrice.text.toString().toInt()
+            part.adtype = if(radioButtons.checkedRadioButtonId == R.id.radio_for_sale) "For Sale" else "Wanted"
+            part.description = advertDescription.text.toString()
+            part.quantity = advertQuantity.text.toString().toInt()
             if (part.title.isEmpty()) {
                 toast(R.string.prompt_enterTitle)
             } else {
                 if (edit) {
                     app.Store.update(part.copy())
                 } else {
-                    app.Store.create(Model(title = title, price = price, adtype = adtype, category = category, image = image))
+                    app.Store.create(part.copy())
                 }
             }
             info("add Button Pressed: $part")
@@ -110,6 +124,4 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
             }
         }
     }
-
-
 }
