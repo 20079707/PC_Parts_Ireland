@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/android-studio-beta-4.2/plugins/android/lib/android.jar!/images/material/icons/materialicons/add_circle_outline/baseline_add_circle_outline_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/android-studio-beta-4.2/plugins/android/lib/android.jar!/images/material/icons/materialicons/edit/baseline_edit_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="45a29e" />
-                            <entry key="outputName" value="nav_create_add_icon" />
+                            <entry key="outputName" value="card_edit_icon" />
                             <entry key="sourceFile" value="C:\Users\John\Documents\GitHub\Mobile App 2\PC_Parts_Ireland" />
                           </map>
                         </option>

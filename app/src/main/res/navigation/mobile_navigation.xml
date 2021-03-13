@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_create_advert"
-        android:name="ie.wit.pcpartsireland.activities.ui.home.CreateAdvertFragment"
-        android:label="@string/menu_create_advert"
-        tools:layout="@layout/fragment_create_advert" />
+        android:id="@+id/nav_my_adverts"
+        android:name="ie.wit.pcpartsireland.activities.ui.home.MyAdvertsFragment"
+        android:label="@string/menu_my_adverts"
+        tools:layout="@layout/fragment_my_adverts" />
 
     <fragment
         android:id="@+id/nav_search"

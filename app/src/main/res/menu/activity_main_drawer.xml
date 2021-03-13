@@ -16,9 +16,9 @@
             app:showAsAction="never"/>
 
         <item
-            android:id="@+id/nav_create_advert"
-            android:icon="@drawable/nav_shopping_cart_icon"
-            android:title="@string/nav_cart"
+            android:id="@+id/nav_my_adverts"
+            android:icon="@drawable/nav_my_adverts"
+            android:title="@string/menu_my_adverts"
             app:showAsAction="never"/>
 
 </menu>

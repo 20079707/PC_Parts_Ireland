@@ -5,14 +5,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import ie.wit.pcpartsireland.R
+import ie.wit.pcpartsireland.activities.ui.home.HomeFragment
+import ie.wit.pcpartsireland.adapters.ViewPartListener
 import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
 import ie.wit.pcpartsireland.main.MainApp
+import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
@@ -46,13 +51,14 @@ class HomeActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_create_advert, R.id.nav_search
+                R.id.nav_home, R.id.nav_my_adverts, R.id.nav_search
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         bottom_nav.setupWithNavController(navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -63,7 +69,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_nav_bar, menu)
-        return true
+
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -71,9 +79,10 @@ class HomeActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.nav_home -> toast("You Selected Donate")
             R.id.nav_search -> toast("You Selected Report")
-            R.id.nav_create_advert -> toast("You Selected Report")
+            R.id.nav_my_adverts -> toast("You Selected Report")
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 }

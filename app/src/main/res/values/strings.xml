@@ -3,8 +3,8 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">PC Parts Ireland</string>
+    <string name="nav_header_subtitle">pcpartsireland@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -16,9 +16,10 @@
     <string name="nav_home">Home</string>
     <string name="nav_search">Search</string>
     <string name="nav_place_advert">Place Ad</string>
+    <string name="menu_my_adverts">My Adverts</string>
     <string name="menu_search">Search Parts</string>
     <string name="card_price_label">Price</string>
-    <string name="card_price">$ 0</string>
+    <string name="card_price">0</string>
     <string name="card_name">Name</string>
     <string name="card_category">Category</string>
     <string name="ad_component">Part Name</string>
@@ -66,4 +67,12 @@
     <string name="nav_cart">Cart</string>
     <string name="saveBtn">Save</string>
     <string name="changeImageBtn">Change Image</string>
+    <string name="view_ad_type">Advert Type</string>
+    <string name="view_quantity">1</string>
+    <string name="view_category">Category</string>
+    <string name="view_title">Title</string>
+    <string name="card_description_label">Description</string>
+    <string name="view_description">Description goes here</string>
+    <string name="menu_delete">Delete</string>
+    <string name="euro">€</string>
 </resources>

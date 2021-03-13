@@ -7,10 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.activities.CreateAdvertActivity
-import ie.wit.pcpartsireland.activities.ui.home.CreateAdvertFragment
 import java.io.IOException
 
 fun showImagePicker(parent: CreateAdvertActivity, id: Int) {

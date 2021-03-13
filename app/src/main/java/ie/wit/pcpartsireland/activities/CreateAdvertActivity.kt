@@ -2,6 +2,8 @@ package ie.wit.pcpartsireland.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -25,14 +27,11 @@ import kotlinx.android.synthetic.main.activity_create_advert.mySpinner
 import kotlinx.android.synthetic.main.activity_create_advert.partImage
 import kotlinx.android.synthetic.main.activity_create_advert.radioButtons
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.fragment_create_advert.*
-import kotlinx.android.synthetic.main.fragment_create_advert.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.activity_create_advert.advertQuantity as advertQuantity1
 
-@Suppress("CAST_NEVER_SUCCEEDS")
 class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
 
     private lateinit var binding: ActivityCreateAdvertBinding
@@ -93,7 +92,7 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
             part.price = advertPrice.text.toString().toInt()
             part.adtype = if(radioButtons.checkedRadioButtonId == R.id.radio_for_sale) "For Sale" else "Wanted"
             part.description = advertDescription.text.toString()
-            part.quantity = advertQuantity.text.toString().toInt()
+            part.quantity = advertQuantity1.text.toString().toInt()
             if (part.title.isEmpty()) {
                 toast(R.string.prompt_enterTitle)
             } else {
@@ -123,5 +122,23 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_delete_part, menu)
+
+        // sets delete button for edit view
+        if (edit && menu != null) menu.getItem(0).isVisible = true
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_delete -> {
+                app.Store.delete(part)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
