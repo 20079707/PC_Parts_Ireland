@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken
 import ie.wit.pcpartsireland.helpers.exists
 import ie.wit.pcpartsireland.helpers.read
 import ie.wit.pcpartsireland.helpers.write
-import org.jetbrains.anko.AnkoLogger
 import java.lang.reflect.Type
 import java.nio.file.Files.exists
 import java.nio.file.Files.write
@@ -23,7 +22,7 @@ fun generateRandomId(): Long {
     return Random().nextLong()
 }
 
-class JSONStore (private val context: Context) : Store, AnkoLogger {
+class JSONStore (private val context: Context) : Store {
 
     private var parts = mutableListOf<Model>()
 

@@ -27,12 +27,9 @@ import kotlinx.android.synthetic.main.activity_create_advert.mySpinner
 import kotlinx.android.synthetic.main.activity_create_advert.partImage
 import kotlinx.android.synthetic.main.activity_create_advert.radioButtons
 import kotlinx.android.synthetic.main.activity_home.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.toast
 import kotlinx.android.synthetic.main.activity_create_advert.advertQuantity as advertQuantity1
 
-class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
+class CreateAdvertActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateAdvertBinding
     private lateinit var app: MainApp
@@ -80,6 +77,7 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
             part = intent.extras?.getParcelable("part_edit")!!
             advertTitle.setText(part.title)
             advertDescription.setText(part.description)
+
             createAdvertBtn.setText(R.string.saveBtn)
             imageBtn.setText(R.string.changeImageBtn)
             partImage.setImageBitmap(readImageFromPath(this, part.image))
@@ -94,7 +92,11 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
             part.description = advertDescription.text.toString()
             part.quantity = advertQuantity1.text.toString().toInt()
             if (part.title.isEmpty()) {
-                toast(R.string.prompt_enterTitle)
+                val text = (R.string.prompt_enterTitle)
+                val duration = Toast.LENGTH_SHORT
+
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
             } else {
                 if (edit) {
                     app.Store.update(part.copy())
@@ -102,7 +104,6 @@ class CreateAdvertActivity : AppCompatActivity(), AnkoLogger {
                     app.Store.create(part.copy())
                 }
             }
-            info("add Button Pressed: $part")
             setResult(RESULT_OK)
             finish()
         }

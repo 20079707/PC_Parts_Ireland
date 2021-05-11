@@ -14,9 +14,9 @@ import ie.wit.pcpartsireland.adapters.CardViewPartListener
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.fragment_my_adverts.view.*
-import org.jetbrains.anko.AnkoLogger
 
-class MyAdvertsFragment : Fragment(), AnkoLogger, CardViewPartListener {
+
+class MyAdvertsFragment : Fragment(), CardViewPartListener {
 
     lateinit var app: MainApp
 

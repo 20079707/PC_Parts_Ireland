@@ -1,8 +1,6 @@
 package ie.wit.pcpartsireland.models
 
 import it.sephiroth.android.library.uigestures.UIGestureRecognizer.Companion.id
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import java.util.ArrayList
 
 var lastId = 0L
@@ -11,7 +9,7 @@ internal fun getId(): Long {
     return lastId++
 }
 
-class MemStore : Store, AnkoLogger{
+class MemStore : Store{
 
     private val parts = mutableListOf<Model>()
 
@@ -54,6 +52,6 @@ class MemStore : Store, AnkoLogger{
     }
 
     private fun logAll() {
-        parts.forEach{ info("$it") }
+
     }
 }

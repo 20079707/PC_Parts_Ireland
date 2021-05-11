@@ -4,9 +4,9 @@ import android.app.Application
 import ie.wit.pcpartsireland.models.JSONStore
 import ie.wit.pcpartsireland.models.MemStore
 import ie.wit.pcpartsireland.models.Store
-import org.jetbrains.anko.AnkoLogger
 
-class MainApp : Application(), AnkoLogger {
+
+class MainApp : Application() {
 
     lateinit var Store: Store
 

@@ -1,6 +1,8 @@
 package ie.wit.pcpartsireland.activities
 
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -19,8 +21,7 @@ import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.activity_home.*
-import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.toast
+
 
 
 class HomeActivity : AppCompatActivity() {
@@ -28,6 +29,11 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var app: MainApp
+
+    private inline fun <reified T: Activity> Activity.myStartActivityForResult(requestCode: Int) {
+        val intent = Intent(this, T::class.java)
+        startActivityForResult(intent, requestCode)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +45,10 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+
+
         binding.fab.setOnClickListener {
-            startActivityForResult<CreateAdvertActivity>(0)
+            myStartActivityForResult<CreateAdvertActivity>(0)
         }
 
 
@@ -77,9 +85,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.nav_home -> toast("You Selected Donate")
-            R.id.nav_search -> toast("You Selected Report")
-            R.id.nav_my_adverts -> toast("You Selected Report")
         }
         return super.onOptionsItemSelected(item)
     }
