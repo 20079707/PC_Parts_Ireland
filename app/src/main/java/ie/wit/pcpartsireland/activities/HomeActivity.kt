@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -21,7 +22,7 @@ import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.activity_home.*
-
+import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-
+        nav_view.getHeaderView(0).nav_header_email.text = app.auth.currentUser?.email
 
         binding.fab.setOnClickListener {
             myStartActivityForResult<CreateAdvertActivity>(0)
@@ -74,6 +75,14 @@ class HomeActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    private fun signOut()
+    {
+        app.auth.signOut()
+        val intent = Intent(this@HomeActivity, Login::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_nav_bar, menu)
@@ -85,9 +94,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
+            R.id.nav_sign_out -> signOut()
+
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 }

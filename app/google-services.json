@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796838878860",
+    "project_id": "pc-parts-ireland-a61ca",
+    "storage_bucket": "pc-parts-ireland-a61ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796838878860:android:f9aa2582f6e946b4aea5a9",
+        "android_client_info": {
+          "package_name": "ie.wit.pcpartsireland"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796838878860-vi2squkaudunnjt6s4smp785d6ri12j1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjwmtycH9e6x3cm28gdYm3FH92YQfOyLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796838878860-vi2squkaudunnjt6s4smp785d6ri12j1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

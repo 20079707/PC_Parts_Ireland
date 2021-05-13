@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.print:print:1.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eba26006688988c2deb11e0547a7df01/print-1.0.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c0b55cff837b6abf2d31592e0f87b651/transformed/print-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e50ba0bec21ae520b9024a9a4de6d32/print-1.0.0/res" />
@@ -9,8 +9,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7b39c0f9a0847bfc5251cd2360af0c53/print-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a535750eaa00dc36952cd4f2ad6362ce/print-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eba26006688988c2deb11e0547a7df01/print-1.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eba26006688988c2deb11e0547a7df01/print-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eba26006688988c2deb11e0547a7df01/print-1.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6b459d2a6bcde021fbb3c1d989abf176/print-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d120b1bcf05abc0d4d8a93ada8a0b985/print-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/adc4eeba321bbd9076bca736fef38db7/transformed/print-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c0b55cff837b6abf2d31592e0f87b651/transformed/print-1.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c0b55cff837b6abf2d31592e0f87b651/transformed/print-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c0b55cff837b6abf2d31592e0f87b651/transformed/print-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -23,6 +23,7 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as MainApp
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,7 +32,6 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
 
         root.recyclerViewEdit.layoutManager = LinearLayoutManager(activity)
         root.recyclerViewEdit.adapter = EditAdAdapter(app.Store.findAll(), this)
-
         return root
     }
 

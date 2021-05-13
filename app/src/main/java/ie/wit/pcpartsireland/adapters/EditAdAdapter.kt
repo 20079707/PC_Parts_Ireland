@@ -24,7 +24,6 @@ class EditAdAdapter(
                 R.layout.edit_cards,
                 parent,
                 false
-
             )
         )
     }
