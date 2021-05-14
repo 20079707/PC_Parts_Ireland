@@ -96,6 +96,7 @@ class FireStore(val context: Context) : Store {
         }
     }
 
+
     fun fetchParts(partsReady: () -> Unit) {
         val valueEventListener = object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {

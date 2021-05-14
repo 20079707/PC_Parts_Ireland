@@ -158,7 +158,6 @@ class CreateAdvertActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_delete -> {
-                app.Store.delete(part)
                 finish()
             }
         }

@@ -15,7 +15,7 @@ interface EditPartListener {
 }
 
 class EditAdAdapter(
-    private var adverts: List<Model>,
+    var adverts: ArrayList<Model>,
     private val listener: CardViewPartListener
 ) : RecyclerView.Adapter<EditAdAdapter.EditMainHolder>() {
 
@@ -36,9 +36,16 @@ class EditAdAdapter(
 
     override fun getItemCount(): Int = adverts.size
 
+    fun removeAt(position: Int) {
+        adverts.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+
     class EditMainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(part: Model, listener: CardViewPartListener) {
+            itemView.tag = part
             itemView.title.text = part.title
             itemView.category.text = part.category
             Glide.with(itemView.context).load(part.image).into(itemView.imageIcon)

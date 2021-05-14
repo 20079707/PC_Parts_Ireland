@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -20,9 +22,7 @@ import ie.wit.pcpartsireland.adapters.EditAdAdapter
 import ie.wit.pcpartsireland.adapters.CardViewPartListener
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.Model
-import ie.wit.pcpartsireland.utils.createLoader
-import ie.wit.pcpartsireland.utils.hideLoader
-import ie.wit.pcpartsireland.utils.showLoader
+import ie.wit.pcpartsireland.utils.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_my_adverts.*
 import kotlinx.android.synthetic.main.fragment_my_adverts.view.*
@@ -47,13 +47,70 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
 
 
         setSwipeRefresh()
+
+        val swipeDeleteHandler = object : SwipeToDeleteCallback(requireActivity()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = root.recyclerViewEdit.adapter as EditAdAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+                deletePart((viewHolder.itemView.tag as Model).uid)
+                deleteUserPart(app.auth.currentUser!!.uid,
+                    (viewHolder.itemView.tag as Model).uid)
+            }
+        }
+        val itemTouchDeleteHelper = ItemTouchHelper(swipeDeleteHandler)
+        itemTouchDeleteHelper.attachToRecyclerView(root.recyclerViewEdit)
+
+        val swipeEditHandler = object : SwipeToEditCallback(requireActivity()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                onPartClick(viewHolder.itemView.tag as Model)
+            }
+        }
+        val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
+        itemTouchEditHelper.attachToRecyclerView(root.recyclerViewEdit)
+
         return root
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+            MyAdvertsFragment().apply {
+                arguments = Bundle().apply { }
+            }
     }
 
     override fun onPartClick(part: Model) {
 
         val intent = Intent(activity, CreateAdvertActivity::class.java).putExtra("part_edit", part)
         startActivityForResult(intent, 0)
+    }
+
+    fun deleteUserPart(userId: String, uid: String?) {
+        app.database.child("user-parts").child(userId).child(uid!!)
+            .addListenerForSingleValueEvent(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.removeValue()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        "Firebase Part error : ${error.message}"
+                    }
+                })
+    }
+
+    fun deletePart(uid: String?) {
+        app.database.child("parts").child(uid!!)
+            .addListenerForSingleValueEvent(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.removeValue()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        "Firebase Part error : ${error.message}"
+                    }
+                })
     }
 
     fun setSwipeRefresh() {
