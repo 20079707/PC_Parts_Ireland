@@ -15,11 +15,14 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.activities.ui.home.HomeFragment
 import ie.wit.pcpartsireland.adapters.ViewPartListener
 import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
 import ie.wit.pcpartsireland.main.MainApp
+import ie.wit.pcpartsireland.models.FireStore
 import ie.wit.pcpartsireland.models.Model
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
@@ -30,6 +33,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var app: MainApp
+    private var fireStore: FireStore? = null
+
 
     private inline fun <reified T: Activity> Activity.myStartActivityForResult(requestCode: Int) {
         val intent = Intent(this, T::class.java)
@@ -38,15 +43,16 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         app = application as MainApp
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-
         nav_view.getHeaderView(0).nav_header_email.text = app.auth.currentUser?.email
+
+        app.auth = FirebaseAuth.getInstance()
+        app.database = FirebaseDatabase.getInstance().reference
+
 
         binding.fab.setOnClickListener {
             myStartActivityForResult<CreateAdvertActivity>(0)

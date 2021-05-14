@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.helpers.readImageFromPath
 import ie.wit.pcpartsireland.models.Model
@@ -40,7 +41,7 @@ class EditAdAdapter(
         fun bind(part: Model, listener: CardViewPartListener) {
             itemView.title.text = part.title
             itemView.category.text = part.category
-            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, part.image))
+            Glide.with(itemView.context).load(part.image).into(itemView.imageIcon)
             itemView.setOnClickListener { listener.onPartClick(part) }
         }
     }

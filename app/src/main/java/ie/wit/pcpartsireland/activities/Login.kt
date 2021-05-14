@@ -10,8 +10,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.main.MainApp
+import ie.wit.pcpartsireland.models.FireStore
 import ie.wit.pcpartsireland.utils.createLoader
 import ie.wit.pcpartsireland.utils.hideLoader
 import ie.wit.pcpartsireland.utils.showLoader
@@ -31,7 +34,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
 
 
     lateinit var app: MainApp
-
+    private var fireStore: FireStore? = null
     lateinit var loader : AlertDialog
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +42,16 @@ class Login : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.login)
         app = application as MainApp
 
+
         // Buttons
         emailSignInButton.setOnClickListener(this)
         emailCreateAccountButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
         verifyEmailButton.setOnClickListener(this)
 
-        // [START initialize_auth]
-        // Initialize Firebase Auth
+
         app.auth = FirebaseAuth.getInstance()
-        // [END initialize_auth]
+        app.database = FirebaseDatabase.getInstance().reference
 
         loader = createLoader(this)
     }
@@ -58,6 +61,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = app.auth.currentUser
+
         updateUI(currentUser)
     }
     // [END on_start_check_user]
@@ -74,10 +78,10 @@ class Login : AppCompatActivity(), View.OnClickListener {
         app.auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = app.auth.currentUser
-                    updateUI(user)
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success")
+                            val user = app.auth.currentUser
+                            updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -104,11 +108,11 @@ class Login : AppCompatActivity(), View.OnClickListener {
         // [START sign_in_with_email]
         app.auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
-                    val user = app.auth.currentUser
-                    updateUI(user)
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success")
+                            val user = app.auth.currentUser
+                            updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -221,6 +225,6 @@ class Login : AppCompatActivity(), View.OnClickListener {
 
 
     companion object {
-        private const val TAG = "EmailPassword"
+        internal const val TAG = "EmailPassword"
     }
 }

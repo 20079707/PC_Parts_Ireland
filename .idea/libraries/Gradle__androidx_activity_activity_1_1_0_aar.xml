@@ -3,9 +3,10 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1f30755780cc2eb7a752938690cac88b/activity-1.1.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/877e471d5e4522aa1b3f024c05ca7ee6/transformed/activity-1.1.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/76f90623743c8347ebec1b64634791e2/transformed/activity-1.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/76f90623743c8347ebec1b64634791e2/transformed/activity-1.1.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/76f90623743c8347ebec1b64634791e2/transformed/activity-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/75836fd3de62eb0482a8e3491833b040/transformed/activity-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/877e471d5e4522aa1b3f024c05ca7ee6/transformed/activity-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/877e471d5e4522aa1b3f024c05ca7ee6/transformed/activity-1.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
