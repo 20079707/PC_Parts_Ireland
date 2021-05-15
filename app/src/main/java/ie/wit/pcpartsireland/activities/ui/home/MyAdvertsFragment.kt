@@ -65,6 +65,7 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
                 onPartClick(viewHolder.itemView.tag as Model)
             }
         }
+
         val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
         itemTouchEditHelper.attachToRecyclerView(root.recyclerViewEdit)
 
@@ -78,6 +79,7 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
                 arguments = Bundle().apply { }
             }
     }
+
 
     override fun onPartClick(part: Model) {
 

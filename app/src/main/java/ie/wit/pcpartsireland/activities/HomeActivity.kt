@@ -91,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_nav_bar, menu)
+        menuInflater.inflate(R.menu.menu_delete_part, menu)
 
 
         return super.onCreateOptionsMenu(menu)
@@ -101,7 +101,6 @@ class HomeActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.nav_sign_out -> signOut()
-
         }
         return super.onOptionsItemSelected(item)
     }

@@ -2,7 +2,6 @@ package ie.wit.pcpartsireland.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -16,9 +15,11 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.databinding.ActivityCreateAdvertBinding
+
 import ie.wit.pcpartsireland.helpers.readImageFromPath
 import ie.wit.pcpartsireland.helpers.showImagePicker
 import ie.wit.pcpartsireland.main.MainApp
@@ -30,8 +31,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 import kotlinx.android.synthetic.main.activity_create_advert.advertQuantity as advertQuantity1
 
-private const val TAG = "MyActivity"
-
 class CreateAdvertActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateAdvertBinding
@@ -40,6 +39,7 @@ class CreateAdvertActivity : AppCompatActivity() {
     private val imageRequest = 1
     var edit = false
     lateinit var eventListener : ValueEventListener
+    lateinit var loader : AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +48,9 @@ class CreateAdvertActivity : AppCompatActivity() {
         binding = ActivityCreateAdvertBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        app.auth = FirebaseAuth.getInstance()
+        app.database = FirebaseDatabase.getInstance().reference
 
 
         //spinner Function
@@ -79,10 +82,12 @@ class CreateAdvertActivity : AppCompatActivity() {
             part = intent.extras?.getParcelable("part_edit")!!
             advertTitle.setText(part.title)
             advertDescription.setText(part.description)
+            advertPrice.setText(part.price.toString())
+            advertQuantity1.setText(part.price.toString())
 
             createAdvertBtn.setText(R.string.saveBtn)
             imageBtn.setText(R.string.changeImageBtn)
-            partImage.setImageBitmap(readImageFromPath(this, part.image))
+            Glide.with(this).load(part.image).into(partImage);
         }
 
         createAdvertBtn.setOnClickListener {
@@ -101,7 +106,9 @@ class CreateAdvertActivity : AppCompatActivity() {
                 toast.show()
             } else {
                 if (edit) {
-                    app.Store.update(part.copy())
+                    updatePart(part.uid, part)
+                    updateUserPart(app.auth.currentUser!!.uid,
+                        part.uid, part)
                 } else {
                     writeNewDonation(part)
                 }
@@ -121,11 +128,40 @@ class CreateAdvertActivity : AppCompatActivity() {
             imageRequest -> {
                 if (data != null) {
                     part.image = data.data.toString()
-                    Glide.with(this).load(part.image).into(partImage);
+                    Glide.with(this).load(part.image).into(partImage)
                 }
             }
         }
     }
+
+    fun updateUserPart(userId: String, uid: String?, part: Model) {
+        app.database.child("user-parts").child(userId).child(uid!!)
+            .addListenerForSingleValueEvent(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.setValue(part)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        ("Firebase Part error : ${error.message}")
+                    }
+                })
+    }
+
+    fun updatePart(uid: String?, part: Model) {
+        app.database.child("parts").child(uid!!)
+            .addListenerForSingleValueEvent(
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.setValue(part)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        ("Firebase Part error : ${error.message}")
+                    }
+                })
+    }
+
 
     fun writeNewDonation(part: Model) {
         // Create new donation at /donations & /donations/$uid
@@ -145,23 +181,6 @@ class CreateAdvertActivity : AppCompatActivity() {
 
         app.database.updateChildren(childUpdates)
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_delete_part, menu)
-
-        // sets delete button for edit view
-        if (edit && menu != null) menu.getItem(0).isVisible = true
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_delete -> {
-                finish()
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 

@@ -101,6 +101,7 @@
 
     <string name="messageLoading">Please wait while we Connect to the Server...</string>
     <string name="access_control">Access Control</string>
+    <string name="action_edit">Edit Advert</string>
 
     <!--END Firebase Resources-->
 </resources>
