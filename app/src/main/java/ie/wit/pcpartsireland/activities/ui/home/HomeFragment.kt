@@ -43,8 +43,8 @@ class HomeFragment : Fragment(), CardViewPartListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         root = inflater.inflate(R.layout.fragment_home, container, false)
-
         root.recyclerView.layoutManager = LinearLayoutManager(activity)
+
         setSwipeRefresh()
         return root
     }
@@ -56,7 +56,7 @@ class HomeFragment : Fragment(), CardViewPartListener {
     fun setSwipeRefresh() {
         root.swiperefreshhome.setOnRefreshListener {
             root.swiperefreshhome.isRefreshing = true
-            getAllDonations(app.auth.currentUser!!.uid)
+            getAllUsersParts()
         }
     }
 
@@ -67,16 +67,19 @@ class HomeFragment : Fragment(), CardViewPartListener {
 
     override fun onResume() {
         super.onResume()
-        getAllDonations(app.auth.currentUser!!.uid)
+        getAllUsersParts()
     }
 
-    fun getAllDonations(userId: String?) {
+
+
+    fun getAllUsersParts() {
         loader = createLoader(requireActivity())
-        showLoader(loader, "Downloading Parts from Firebase")
-        val partsList = ArrayList<Model>()
-        app.database.child("user-parts").child(userId!!)
+        showLoader(loader, "Downloading All Users Adverts from Firebase")
+        val advertsList = ArrayList<Model>()
+        app.database.child("parts")
             .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
+                    ("Firebase Advert error : ${error.message}")
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -86,14 +89,13 @@ class HomeFragment : Fragment(), CardViewPartListener {
                         val part = it.
                         getValue<Model>(Model::class.java)
 
-                        partsList.add(part!!)
+                        advertsList.add(part!!)
                         root.recyclerView.adapter =
-                            ViewCardAdapter(partsList, this@HomeFragment)
+                            ViewCardAdapter(advertsList, this@HomeFragment)
                         root.recyclerView.adapter?.notifyDataSetChanged()
                         checkSwipeRefresh()
 
-                        app.database.child("user-parts").child(userId)
-                            .removeEventListener(this)
+                        app.database.child("parts").removeEventListener(this)
                     }
                 }
             })

@@ -7,24 +7,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import ie.wit.pcpartsireland.R
-import ie.wit.pcpartsireland.activities.ui.home.HomeFragment
-import ie.wit.pcpartsireland.adapters.ViewPartListener
 import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
 import ie.wit.pcpartsireland.main.MainApp
 import ie.wit.pcpartsireland.models.FireStore
-import ie.wit.pcpartsireland.models.Model
+import ie.wit.pcpartsireland.utils.uploadImageView
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.nav_header_home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 
@@ -33,7 +30,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var app: MainApp
-    private var fireStore: FireStore? = null
 
 
     private inline fun <reified T: Activity> Activity.myStartActivityForResult(requestCode: Int) {
@@ -48,7 +44,21 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+
         nav_view.getHeaderView(0).nav_header_email.text = app.auth.currentUser?.email
+        nav_view.getHeaderView(0).nav_header_name.text = app.auth.currentUser?.displayName
+        Picasso.get().load(app.auth.currentUser?.photoUrl)
+            .resize(180, 180)
+            .into(nav_view.getHeaderView(0).imageView, object : Callback {
+                override fun onSuccess() {
+                    // Drawable is ready
+                    uploadImageView(nav_view.getHeaderView(0).imageView)
+                }
+                override fun onError(e: Exception) {}
+            })
+
+
 
         app.auth = FirebaseAuth.getInstance()
         app.database = FirebaseDatabase.getInstance().reference

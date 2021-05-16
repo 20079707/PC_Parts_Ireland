@@ -6,9 +6,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.widget.ImageView
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.activities.CreateAdvertActivity
+import ie.wit.pcpartsireland.main.MainApp
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 fun showImagePicker(parent: CreateAdvertActivity, id: Int) {
@@ -33,6 +37,19 @@ fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
         }
     }
     return bitmap
+}
+
+fun uploadImageView(app: MainApp, imageView: ImageView) {
+    // Get the data from an ImageView as bytes
+    val uid = app.auth.currentUser!!.uid
+    val imageRef = app.storage.child("photos").child("${uid}.jpg")
+    val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+    val baos = ByteArrayOutputStream()
+
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val data = baos.toByteArray()
+
+    var uploadTask = imageRef.putBytes(data)
 }
 
 fun readImageFromPath(context: Context, path: String) : Bitmap? {

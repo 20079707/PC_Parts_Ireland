@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "796838878860-imk0tt9s3su98eprfh4tuid5er26eijg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ie.wit.pcpartsireland",
+            "certificate_hash": "15cbcbc81901b7a7a2565377c7a26d4920b00033"
+          }
+        },
+        {
           "client_id": "796838878860-vi2squkaudunnjt6s4smp785d6ri12j1.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -28,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "796838878860-vi2squkaudunnjt6s4smp785d6ri12j1.apps.googleusercontent.com",
+              "client_id": "796838878860-bj8ait20lje34an8roq1m2tialulbrpk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

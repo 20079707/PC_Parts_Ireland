@@ -1,6 +1,7 @@
 package ie.wit.pcpartsireland.activities
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -28,6 +29,8 @@ import ie.wit.pcpartsireland.utils.hideLoader
 import ie.wit.pcpartsireland.utils.showLoader
 import kotlinx.android.synthetic.main.activity_create_advert.*
 import kotlinx.android.synthetic.main.activity_home.*
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.*
 import kotlinx.android.synthetic.main.activity_create_advert.advertQuantity as advertQuantity1
 
@@ -48,9 +51,6 @@ class CreateAdvertActivity : AppCompatActivity() {
         binding = ActivityCreateAdvertBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
-        app.auth = FirebaseAuth.getInstance()
-        app.database = FirebaseDatabase.getInstance().reference
 
 
         //spinner Function
@@ -106,11 +106,11 @@ class CreateAdvertActivity : AppCompatActivity() {
                 toast.show()
             } else {
                 if (edit) {
-                    updatePart(part.uid, part)
-                    updateUserPart(app.auth.currentUser!!.uid,
+                    app.Store.updatePart(part.uid, part)
+                    app.Store.updateUserPart(app.auth.currentUser!!.uid,
                         part.uid, part)
                 } else {
-                    writeNewDonation(part)
+                    app.Store.create(part)
                 }
             }
             setResult(RESULT_OK)
@@ -133,55 +133,4 @@ class CreateAdvertActivity : AppCompatActivity() {
             }
         }
     }
-
-    fun updateUserPart(userId: String, uid: String?, part: Model) {
-        app.database.child("user-parts").child(userId).child(uid!!)
-            .addListenerForSingleValueEvent(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.ref.setValue(part)
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        ("Firebase Part error : ${error.message}")
-                    }
-                })
-    }
-
-    fun updatePart(uid: String?, part: Model) {
-        app.database.child("parts").child(uid!!)
-            .addListenerForSingleValueEvent(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.ref.setValue(part)
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        ("Firebase Part error : ${error.message}")
-                    }
-                })
-    }
-
-
-    fun writeNewDonation(part: Model) {
-        // Create new donation at /donations & /donations/$uid
-
-
-        val uid = app.auth.currentUser!!.uid
-        val key = app.database.child("parts").push().key
-
-        if (key != null) {
-            part.uid = key
-        }
-        val partValues = part.toMap()
-
-        val childUpdates = HashMap<String, Any>()
-        childUpdates["/parts/$key"] = partValues
-        childUpdates["/user-parts/$uid/$key"] = partValues
-
-        app.database.updateChildren(childUpdates)
-
-    }
-
-
 }

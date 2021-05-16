@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.sephiroth74:NumberSlidingPicker:1.0.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/756e4853aeca5bc65dc3fb33754f3cb0/transformed/NumberSlidingPicker-1.0.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/756e4853aeca5bc65dc3fb33754f3cb0/transformed/NumberSlidingPicker-1.0.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/756e4853aeca5bc65dc3fb33754f3cb0/transformed/NumberSlidingPicker-1.0.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/65c015ddf1955cb8b1ff787f464942fa/transformed/NumberSlidingPicker-1.0.3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/65c015ddf1955cb8b1ff787f464942fa/transformed/NumberSlidingPicker-1.0.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/65c015ddf1955cb8b1ff787f464942fa/transformed/NumberSlidingPicker-1.0.3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

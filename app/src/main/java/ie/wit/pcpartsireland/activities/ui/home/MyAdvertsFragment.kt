@@ -52,8 +52,8 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val adapter = root.recyclerViewEdit.adapter as EditAdAdapter
                 adapter.removeAt(viewHolder.adapterPosition)
-                deletePart((viewHolder.itemView.tag as Model).uid)
-                deleteUserPart(app.auth.currentUser!!.uid,
+                app.Store.deletePart((viewHolder.itemView.tag as Model).uid)
+                app.Store.deleteUserPart(app.auth.currentUser!!.uid,
                     (viewHolder.itemView.tag as Model).uid)
             }
         }
@@ -87,38 +87,10 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
         startActivityForResult(intent, 0)
     }
 
-    fun deleteUserPart(userId: String, uid: String?) {
-        app.database.child("user-parts").child(userId).child(uid!!)
-            .addListenerForSingleValueEvent(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.ref.removeValue()
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        "Firebase Part error : ${error.message}"
-                    }
-                })
-    }
-
-    fun deletePart(uid: String?) {
-        app.database.child("parts").child(uid!!)
-            .addListenerForSingleValueEvent(
-                object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.ref.removeValue()
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        "Firebase Part error : ${error.message}"
-                    }
-                })
-    }
-
     fun setSwipeRefresh() {
         root.swiperefresh.setOnRefreshListener {
             root.swiperefresh.isRefreshing = true
-            getAllDonations(app.auth.currentUser!!.uid)
+            getAllParts(app.auth.currentUser!!.uid)
         }
     }
 
@@ -129,10 +101,10 @@ class MyAdvertsFragment : Fragment(), CardViewPartListener {
 
     override fun onResume() {
         super.onResume()
-        getAllDonations(app.auth.currentUser!!.uid)
+        getAllParts(app.auth.currentUser!!.uid)
     }
 
-    fun getAllDonations(userId: String?) {
+    fun getAllParts(userId: String?) {
         loader = createLoader(requireActivity())
         showLoader(loader, "Downloading Parts from Firebase")
         val partsList = ArrayList<Model>()
