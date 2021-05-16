@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:orientation="vertical"
+    android:theme="@style/Theme.PCPartsIreland.AppBarOverlay">
+    <!--android:background="@drawable/wallpaper"-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loginWelcome"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnWelcomeLogin"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="250dp"
+        android:hint="@string/sign_in"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnWelcomeRegister"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="15dp"
+        android:hint="@string/saveBtn"
+        android:textColor="@color/white" />
+
+</LinearLayout>

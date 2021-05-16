@@ -81,7 +81,7 @@
     <string name="label_emailpassword">Email/Password Authentication</string>
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
     <string name="sign_in">Sign In</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">Register Now</string>
     <string name="send_link">Send Link</string>
     <string name="sign_out">Sign Out</string>
     <string name="verify_email">Verify Email</string>
@@ -102,6 +102,7 @@
     <string name="messageLoading">Please wait while we Connect to the Server...</string>
     <string name="access_control">Access Control</string>
     <string name="action_edit">Edit Advert</string>
+    <string name="loginWelcome">Welcome</string>
 
     <!--END Firebase Resources-->
 </resources>

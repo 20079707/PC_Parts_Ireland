@@ -38,7 +38,7 @@
     </style>
 
     <!-- Dark Buttons -->
-    <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
+    <style name="ThemeOverlay.MyLightButton" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorButtonNormal">@color/grey</item>
         <item name="colorAccent">@color/light_blue</item>
         <item name="android:layout_marginRight">4dp</item>

@@ -132,7 +132,6 @@ class Login : AppCompatActivity(), View.OnClickListener {
 
                 // [START_EXCLUDE]
                 if (!task.isSuccessful) {
-                    status.setText(R.string.auth_failed)
                 }
                 hideLoader(loader)
                 // [END_EXCLUDE]
@@ -200,9 +199,6 @@ class Login : AppCompatActivity(), View.OnClickListener {
         hideLoader(loader)
         app.storage = FirebaseStorage.getInstance().reference
         if (user != null) {
-            status.text = getString(R.string.emailpassword_status_fmt,
-                user.email, user.isEmailVerified)
-            detail.text = getString(R.string.firebase_status_fmt, user.uid)
 
             emailPasswordButtons.visibility = View.GONE
             emailPasswordFields.visibility = View.GONE
@@ -212,8 +208,6 @@ class Login : AppCompatActivity(), View.OnClickListener {
             finish()
             verifyEmailButton.isEnabled = !user.isEmailVerified
         } else {
-            status.setText(R.string.signed_out)
-            detail.text = null
 
             emailPasswordButtons.visibility = View.VISIBLE
             emailPasswordFields.visibility = View.VISIBLE
