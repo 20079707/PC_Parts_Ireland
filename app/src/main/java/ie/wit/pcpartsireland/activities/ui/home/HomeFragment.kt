@@ -26,6 +26,7 @@ import ie.wit.pcpartsireland.utils.showLoader
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_my_adverts.view.*
+import kotlinx.android.synthetic.main.list_cards.*
 
 
 class HomeFragment : Fragment(), CardViewPartListener {
@@ -34,6 +35,7 @@ class HomeFragment : Fragment(), CardViewPartListener {
     var part = Model()
     lateinit var root: View
     lateinit var loader : AlertDialog
+    var favourite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

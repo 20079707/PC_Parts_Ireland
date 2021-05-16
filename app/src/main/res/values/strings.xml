@@ -14,10 +14,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_home">Home</string>
-    <string name="nav_search">Search</string>
+    <string name="nav_favourites">Favourites</string>
     <string name="nav_place_advert">Place Ad</string>
     <string name="menu_my_adverts">My Adverts</string>
-    <string name="menu_search">Search Parts</string>
+    <string name="menu_favourites">Favourite Parts</string>
     <string name="card_price_label">Price</string>
     <string name="card_price">0</string>
     <string name="card_name">Name</string>

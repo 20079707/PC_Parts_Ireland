@@ -19,6 +19,9 @@ data class Model(
     var image: String = "",
     var description: String = "",
     var adtype: String = "",
+    var latitude: Double = 0.0,
+    var longitude: Double = 0.0,
+    var isfavourite: Boolean = false,
     var email: String? = "joe@bloggs.com"
                  ) : Parcelable {
     @Exclude
@@ -31,6 +34,9 @@ data class Model(
             "quantity" to quantity,
             "image" to image,
             "description" to description,
+            "latitude" to latitude,
+            "longitude" to longitude,
+            "isfavourite" to isfavourite,
             "adtype" to adtype,
             "email" to email
         )

@@ -43,6 +43,7 @@ class ViewAdAdapter(
             itemView.category.text = part.category
             itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, part.image))
             itemView.setOnClickListener { listener.onPartClick(part) }
+            if(part.isfavourite) itemView.imagefavourite.setImageResource(android.R.drawable.star_big_on)
         }
     }
 }

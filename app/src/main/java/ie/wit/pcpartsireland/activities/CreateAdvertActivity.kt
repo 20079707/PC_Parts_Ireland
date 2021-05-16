@@ -43,6 +43,7 @@ class CreateAdvertActivity : AppCompatActivity() {
     var edit = false
     lateinit var eventListener : ValueEventListener
     lateinit var loader : AlertDialog
+    var favourite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +91,16 @@ class CreateAdvertActivity : AppCompatActivity() {
             Glide.with(this).load(part.image).into(partImage);
         }
 
+        imagefavourite.setOnClickListener {
+            favourite = if (!favourite) {
+                imagefavourite.setImageResource(android.R.drawable.star_big_on)
+                true
+            } else {
+                imagefavourite.setImageResource(android.R.drawable.star_big_off)
+                false
+            }
+        }
+
         createAdvertBtn.setOnClickListener {
             part.category = part.category
             part.image = part.image
@@ -98,6 +109,9 @@ class CreateAdvertActivity : AppCompatActivity() {
             part.adtype = if(radioButtons.checkedRadioButtonId == R.id.radio_for_sale) "For Sale" else "Wanted"
             part.description = advertDescription.text.toString()
             part.quantity = advertQuantity1.text.toString().toInt()
+            part.latitude = app.currentLocation.latitude
+            part.longitude = app.currentLocation.longitude
+            part.isfavourite = favourite
             if (part.title.isEmpty()) {
                 val text = (R.string.prompt_enterTitle)
                 val duration = Toast.LENGTH_SHORT

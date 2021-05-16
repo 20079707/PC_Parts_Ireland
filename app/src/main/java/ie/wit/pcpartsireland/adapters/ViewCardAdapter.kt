@@ -44,6 +44,7 @@ class ViewCardAdapter(
             itemView.category.text = part.category
             Glide.with(itemView.context).load(part.image).into(itemView.imageIcon)
             itemView.setOnClickListener { listenerCard.onPartClick(part) }
+            if(part.isfavourite) itemView.imagefavourite.setImageResource(android.R.drawable.star_big_on)
         }
     }
 }

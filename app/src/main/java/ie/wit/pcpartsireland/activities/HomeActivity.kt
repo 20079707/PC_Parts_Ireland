@@ -3,13 +3,16 @@ package ie.wit.pcpartsireland.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -17,8 +20,10 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import ie.wit.pcpartsireland.R
 import ie.wit.pcpartsireland.databinding.ActivityHomeBinding
+import ie.wit.pcpartsireland.helpers.checkLocationPermissions
+import ie.wit.pcpartsireland.helpers.isPermissionGranted
+import ie.wit.pcpartsireland.helpers.setCurrentLocation
 import ie.wit.pcpartsireland.main.MainApp
-import ie.wit.pcpartsireland.models.FireStore
 import ie.wit.pcpartsireland.utils.uploadImageView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header_home.*
@@ -44,6 +49,18 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+         app.currentLocation = Location("Default").apply {
+           latitude = 52.245696
+           longitude = -7.139102
+       }
+
+        app.locationClient = LocationServices.getFusedLocationProviderClient(this)
+        if(checkLocationPermissions(this)) {
+            // todo get the current location
+            setCurrentLocation(app)
+        }
+
 
 
         nav_view.getHeaderView(0).nav_header_email.text = app.auth.currentUser?.email
@@ -76,7 +93,7 @@ class HomeActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_my_adverts, R.id.nav_search
+                R.id.nav_home, R.id.nav_my_adverts, R.id.nav_favourites
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -84,6 +101,20 @@ class HomeActivity : AppCompatActivity() {
 
         bottom_nav.setupWithNavController(navController)
 
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (isPermissionGranted(requestCode, grantResults)) {
+            // todo get the current location
+            setCurrentLocation(app)
+        } else {
+            // permissions denied, so use the default location
+            app.currentLocation = Location("Default").apply {
+                latitude = 52.245696
+                longitude = -7.139102
+            }
+        }
+        Log.v("Donation", "Home LAT: ${app.currentLocation.latitude} LNG: ${app.currentLocation.longitude}")
     }
 
     override fun onSupportNavigateUp(): Boolean {
